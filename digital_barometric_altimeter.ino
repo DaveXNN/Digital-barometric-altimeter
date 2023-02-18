@@ -119,9 +119,9 @@ void finish()
 
 void setup()
 {
-  pinMode (2, INPUT_PULLUP);                               // set pin A to input
-  pinMode (3, INPUT_PULLUP);                               // set pin B to input
-  pinMode (5, INPUT_PULLUP);                               // set pin C to input
+  pinMode (2, INPUT_PULLUP);                               // set pin A as input
+  pinMode (3, INPUT_PULLUP);                               // set pin B as input
+  pinMode (5, INPUT_PULLUP);                               // set pin C as input
   lcd.init();                                              // inicialization of the display
   lcd.backlight();                                         // backlight of the display
   if (!bmp.begin(0x76))                                    // check BMP280 sensor
