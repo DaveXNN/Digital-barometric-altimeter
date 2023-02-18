@@ -135,8 +135,8 @@ void setup()
     delay(2000);
   }
   myFile = SD.open("data.csv", FILE_WRITE);                // open data.csv for writing
-  altitude0 = double(value("Nadmorska vyska:", "m ASL", 0, 8000, 300, 100));
-  period = (unsigned long)(value("Perioda:", "ms", 100, 30000, 1000, 1000));
+  altitude0 = double(value("Altitude:", "m ASL", 0, 8000, 300, 100));
+  period = (unsigned long)(value("Period:", "ms", 100, 30000, 1000, 1000));
   lcd.clear();                  
   lcd.print("Calibration...");                  
   for(int i=1; i<=1000; i++)
@@ -154,7 +154,7 @@ void setup()
   lcd.print("Measurement started");                          
   delay(2000);                                           
   Timer1.initialize(period * 1000);                        // set a period for TIMER1
-  Timer1.attachInterrupt(timer);                           // při interruptu spustí funkci timer
+  Timer1.attachInterrupt(timer);                           // run timer() function after one period
   attachInterrupt(digitalPinToInterrupt(2), ending, LOW);  // external interrupt on D2 pin, runs ending() function
 }
 
