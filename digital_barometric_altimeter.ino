@@ -33,8 +33,8 @@ double pressure0;                                           // initial atmospher
 double altitude;                                            // current altitude
 double altitude0;                                           // initial altitude
 String filename = "data000.csv";                            // csv file name        
-char header0[] = "ALTITUDE MEASUREMENT";         
-char header1[] = "Time [ms],Air pressure [Pa],Altitude [m ASL]";                    
+char header0[] = "ALTITUDE MEASUREMENT";                    // title of csv file
+char header1[] = "Time [ms],Air pressure [Pa],Altitude [m ASL]";  // names of the values in csv file
 
 void digpin_init()                                          // initialize digital pins
 {
