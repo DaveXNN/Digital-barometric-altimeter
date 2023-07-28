@@ -32,7 +32,9 @@ double pressure;                                            // current atmospher
 double pressure0;                                           // initial atmospheric pressure (at the sea level)
 double altitude;                                            // current altitude
 double altitude0;                                           // initial altitude
-String filename = "data000.csv";                            // csv file name                                  
+String filename = "data000.csv";                            // csv file name        
+char header0[] = "ALTITUDE MEASUREMENT";         
+char header1[] = "Time [ms],Air pressure [Pa],Altitude [m ASL]";                    
 
 void digpin_init()                                          // initialize digital pins
 {
@@ -73,22 +75,21 @@ void measurement_init()                                     // initialize a meas
 void sd_card_init()                                         // initialize SD card
 {
   if(SD.begin(4))                                           // check SD card
-  {
+  { 
     int meas_num = 0;                                       // measurement number
+    myFile.close(); 
     while(SD.exists(filename))                              // create a new csv file with number of measurement
     {
       meas_num += 1;                                        // increase measurement number
       if (meas_num < 10) {filename = "data00" + String(meas_num) + ".csv";}
-      else if(meas_num < 100) {filename = "data0" + String(meas_num) + ".csv";}
+      else if (meas_num < 100) {filename = "data0" + String(meas_num) + ".csv";}
       else {filename = "data" + String(meas_num) + ".csv";}
     }
     myFile = SD.open(filename, FILE_WRITE);                 // open csv file for writing
-    write_line_to_csv("ALTITUDE MEASUREMENT");              // write file header
-    write_line_to_csv("Measurement: " + String(meas_num));
-    write_line_to_csv("Initial altitude: "  + String(altitude0) + " m ASL");
-    write_line_to_csv("Initial air pressure: " + String(pressure0/100) + " hPa");
+    write_line_to_csv(header0);                             // write file header
+    write_line_to_csv("Measurement:," + String(meas_num));
     write_line_to_csv("");
-    write_line_to_csv("Time [ms],Air pressure [Pa],Altitude [m ASL]");
+    write_line_to_csv(header1);
   }
   else
   {
@@ -176,8 +177,8 @@ void decide()                                               // decide what to do
   }
   while (!digitalRead(C)) {}
   if (a == 0) {}
-  if (a == 1) {measurement_init();}
-  if (a == 2) {finish(); sd_card_init();}
+  if (a == 1) {measurement_init(); sd_card_init();}
+  if (a == 2) {finish();}
 }
 
 void lcd_write_desition(int state)                          // write current desition to display
