@@ -1,5 +1,8 @@
-# Digital barometric altimeter
-This repository contains a program for Arduino Nano based barometric altimeter.
+## Digital barometric altimeter
+This repository contains Arduino Nano based barometric altimeter project description.
+
+# Introduction
+This barometric altimeter is a small device which can measure current altitude using atmospheric pressure detection. 
 
 Here is a list of electronic components used in this project:
   1. Arduino Nano board (https://store.arduino.cc/products/arduino-nano?queryID=fc006532adfc9cd109270b2609e022f7)
