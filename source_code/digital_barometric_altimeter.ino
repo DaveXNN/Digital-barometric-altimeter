@@ -65,11 +65,11 @@ void measurement_init()                                     // initialize a meas
   altitude0 = double(set_value("Init. altitude:", "m ASL", 0, 8000, 300, 100));
   period = (unsigned long)(set_value("Period:", "ms", 100, 8300, 1000, 1000)) * 1000;
   lcd_write("Calibration...", "", false);                
-  for(int i=1; i<=1000; i++)
+  for(int i=1; i<=100; i++)
   {
     pressure0 += bmp.readPressure();
   }
-  pressure0 = pressure0 / 1000;
+  pressure0 = pressure0 / 100;
 }
 
 void sd_card_init()                                         // initialize SD card
@@ -181,7 +181,7 @@ void decide()                                               // decide what to do
   if (a == 2) {finish();}
 }
 
-void lcd_write_desition(int state)                          // write current desition to display
+void lcd_write_desition(int state)                          // write current decision to display
 {
   if (state == 0) {lcd_write("Action:", "continue", false);}
   if (state == 1) {lcd_write("Action:", "new measurement", false);}
